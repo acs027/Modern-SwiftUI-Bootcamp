@@ -13,6 +13,4 @@ A simple SwiftUI demo app that displays a user profile card with an image, name,
 
 ## Screenshots
 
-| User Card |
-|-----------|
-| <img src="screenshot.png" alt="UserCard Screenshot" width="300"/> |
+<img src="screenshot.png" alt="UserCard Screenshot" width="300"/>
