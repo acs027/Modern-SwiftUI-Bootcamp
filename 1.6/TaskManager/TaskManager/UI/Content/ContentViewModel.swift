@@ -19,11 +19,6 @@ final class ContentViewModel: ObservableObject {
         }
     }
     
-    init() {
-        let task = Task(id: UUID(), title: "Title", isCompleted: false)
-        self.tasks = [task]
-    }
-    
     func deleteTask(id: UUID) {
         guard let index = tasks.firstIndex(where: { $0.id == id }) else { return }
         tasks.remove(at: index)
