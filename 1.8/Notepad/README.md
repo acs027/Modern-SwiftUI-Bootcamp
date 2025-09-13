@@ -20,9 +20,7 @@ A simple and colorful **Notes app** built with SwiftUI that allows users to crea
 
 <p align="center">
     <img width="300" alt="Image" src="https://github.com/user-attachments/assets/0e031c28-1e02-4d88-95f5-f34c8f5d5d55" />
-
     <img width="300" alt="Image" src="https://github.com/user-attachments/assets/1d77f0b3-fd3e-48e8-8d3f-bb06b746b3af" />
-
     <img width="300" alt="Image" src="https://github.com/user-attachments/assets/e37b476f-6abc-4401-a69f-15fbb2a26899" />
 </p>
 
