@@ -53,9 +53,19 @@ RickandMorty/
 
 ## Installation
 
-### 1. Clone the repository
+### Clone the repository
 ```bash
-git clone https://github.com/your-username/RickandMorty.git
+git clone https://github.com/acs027/Modern-SwiftUI-Bootcamp.git
+```
 
-2. Open with the XCode
+### Navigate to specific project
+```bash
+cd Modern-SwiftUI-Bootcamp/1.11/RickandMorty
+```
+
+### Open the project
+```bash
+open RickandMorty.xcodeproj
+```
+
 
