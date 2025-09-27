@@ -42,7 +42,6 @@ final class PokemonListViewModel {
                 isLoading = false
             }
         }
-//#endif // DEBUG
     }
     
     func loadMore() async {
