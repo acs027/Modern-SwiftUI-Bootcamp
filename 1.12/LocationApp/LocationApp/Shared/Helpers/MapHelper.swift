@@ -39,10 +39,10 @@ struct MapHelper {
                 guard let p = placemarks?.first else { cont.resume(returning: nil); return }
                 let lines = [
                     p.name,
-                    p.thoroughfare,
-                    p.subThoroughfare,
-                    p.locality,
-                    p.administrativeArea,
+//                    p.thoroughfare,
+//                    p.subThoroughfare,
+//                    p.locality,
+//                    p.administrativeArea,
                     p.postalCode,
                     p.country
                 ].compactMap { $0 }

@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import SwiftData
 
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -32,10 +33,6 @@ struct Provider: TimelineProvider {
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
-
-//    func relevances() async -> WidgetRelevances<Void> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
 }
 
 struct SimpleEntry: TimelineEntry {
@@ -44,15 +41,20 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct LocationAppWidgetExtensionEntryView : View {
-    var entry: Provider.Entry
+    @Query private var favoriteLocations: [FavoriteLocation]
 
     var body: some View {
         VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
+            if let location = favoriteLocations.last {
+                Text("Favorite Location: ")
+                    .bold()
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+                Text(location.name)
+            } else {
+                Text("Favorite Locations")
+            }
 
-            Text("Emoji:")
-            Text(entry.emoji)
         }
     }
 }
@@ -63,16 +65,18 @@ struct LocationAppWidgetExtension: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(iOS 17.0, *) {
-                LocationAppWidgetExtensionEntryView(entry: entry)
+                LocationAppWidgetExtensionEntryView()
+                    .modelContainer(for: FavoriteLocation.self)
                     .containerBackground(.fill.tertiary, for: .widget)
             } else {
-                LocationAppWidgetExtensionEntryView(entry: entry)
+                LocationAppWidgetExtensionEntryView()
+                    .modelContainer(for: FavoriteLocation.self)
                     .padding()
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Favorite Location")
+        .description("Favorite Location Widget.")
     }
 }
 

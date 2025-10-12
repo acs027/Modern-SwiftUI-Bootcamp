@@ -25,6 +25,9 @@ struct MapView: View {
     @State var isFavoriteListShowing: Bool = false
     @State private var isManualMarker: Bool = false
     
+    @State private var lastGeocodeTime: Date? = nil
+    @State private var userAddress = ""
+    
     private var offset: CGFloat {
         if selectedCoordinate != nil {
             0
@@ -38,9 +41,6 @@ struct MapView: View {
             mapContent
                 .safeAreaInset(edge: .bottom) {
                     isManualMarkerToggleButton
-                }
-                .safeAreaInset(edge: .top) {
-                    addressLabel
                 }
                 .toolbar {
                     toolbarButton
@@ -66,6 +66,9 @@ struct MapView: View {
                 }
             }
         }
+        .onChange(of: cameraPosition) { oldValue, newValue in
+            cooldownForAddress()
+        }
     }
     
     // MARK: View Components
@@ -76,7 +79,7 @@ struct MapView: View {
                 favoriteLocations
                 if let selectedCoordinate {
                     Marker(coordinate: selectedCoordinate) {
-                        Label("", systemImage: "star")
+                        Label(address ?? "", systemImage: "star")
                     }
                 }
                 
@@ -90,11 +93,22 @@ struct MapView: View {
                     viewOverlay(proxy: proxy)
                     saveToFavoriteButton
                 }
+                    .overlay {
+                        userLocationText
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    }
             )
             .mapControls {
                 MapCompass()
                 MapUserLocationButton()
             }
+        }
+    }
+    
+    @ViewBuilder
+    private var userLocationText: some View {
+        if let location = locationManager.userLocation {
+            LocationCard(location: location, userAddress: userAddress)
         }
     }
     
@@ -163,7 +177,7 @@ struct MapView: View {
             .contentShape(Rectangle())
             .onTapGesture { position in
                 if let coordinate = proxy.convert(position, from: .local) {
-                    getAddress(from: coordinate)
+                    setAddress(from: coordinate)
                 }
             }
             .allowsHitTesting(isManualMarker)
@@ -199,11 +213,30 @@ struct MapView: View {
         )
     }
     
-    private func getAddress(from coordinate: CLLocationCoordinate2D?) {
+    private func setAddress(from coordinate: CLLocationCoordinate2D?) {
         if let coordinate {
             self.selectedCoordinate = coordinate
             Task {
                 self.address = try await MapHelper.reverseGeocodeAsync(lat: coordinate.latitude, lon: coordinate.longitude)
+            }
+        }
+    }
+    
+    private func cooldownForAddress() {
+        let now = Date()
+        if let last = lastGeocodeTime, now.timeIntervalSince(last) < 15 {
+            print(last)
+            return
+        }
+        lastGeocodeTime = now
+        getAddress(from: locationManager.userLocation)
+    }
+    
+    private func getAddress(from coordinate: CLLocationCoordinate2D?) {
+        if let coordinate {
+            Task {
+                guard let text = try await MapHelper.reverseGeocodeAsync(lat: coordinate.latitude, lon: coordinate.longitude) else { return }
+                userAddress = text
             }
         }
     }
