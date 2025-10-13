@@ -14,6 +14,7 @@ A modern SwiftUI sample demonstrating MapKit, SwiftData, CoreLocation, and App I
 - App Intents / App Shortcuts:
   - “Open Favorite Locations”
   - “Show Closest Favorite Location” (focuses the nearest saved favorite)
+  
 
 ## Tech Stack
 - SwiftUI
@@ -21,6 +22,16 @@ A modern SwiftUI sample demonstrating MapKit, SwiftData, CoreLocation, and App I
 - CoreLocation
 - SwiftData
 - AppIntents
+
+## Screenshots
+
+<p align="center">    
+<img width="300" alt="Image" src="https://github.com/user-attachments/assets/69e49963-db6d-484f-9d9b-cea1caf10105" />
+<img width="300" alt="Image" src="https://github.com/user-attachments/assets/5d1c84e7-7d71-483b-923a-b5f631e319d6" />
+<img width="300" alt="Image" src="https://github.com/user-attachments/assets/2dc2e639-d21d-4809-a58b-1b467874f50c" />
+<img width="300" alt="Image" src="https://github.com/user-attachments/assets/a55db2bb-43a3-4a97-b5cf-4a74692f6906" />
+<img width="300" alt="Image" src="https://github.com/user-attachments/assets/c000ddbe-9de1-434e-94eb-950b7f93ee0f" />
+</p>
 
 ## Using the App
 - Toggle “Marker placement” ON and tap the map to drop a marker
