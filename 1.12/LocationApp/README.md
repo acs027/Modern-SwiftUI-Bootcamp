@@ -30,7 +30,7 @@ A modern SwiftUI sample demonstrating MapKit, SwiftData, CoreLocation, and App I
 <img width="300" alt="Image" src="https://github.com/user-attachments/assets/5d1c84e7-7d71-483b-923a-b5f631e319d6" />
 <img width="300" alt="Image" src="https://github.com/user-attachments/assets/2dc2e639-d21d-4809-a58b-1b467874f50c" />
 <img width="300" alt="Image" src="https://github.com/user-attachments/assets/a55db2bb-43a3-4a97-b5cf-4a74692f6906" />
-<img width="300" alt="Image" src="https://github.com/user-attachments/assets/c000ddbe-9de1-434e-94eb-950b7f93ee0f" />
+<img width="300" alt="Image" src="https://github.com/user-attachments/assets/1eb16f0b-96b9-4e3f-a6d8-4077760abf1b" />
 </p>
 
 ## Using the App

@@ -12,6 +12,5 @@ import SwiftUI
 struct LocationAppWidgetExtensionBundle: WidgetBundle {
     var body: some Widget {
         LocationAppWidgetExtension()
-        LocationAppWidgetExtensionControl()
     }
 }

@@ -37,3 +37,7 @@ final class FavoriteLocation: Identifiable {
         self.category = category
     }
 }
+
+extension FavoriteLocation {
+    static let mock = FavoriteLocation(id: UUID(), name: "Unknown", latitude: 100, longitude: 100, category: "City")
+}
