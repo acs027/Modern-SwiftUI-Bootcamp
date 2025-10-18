@@ -71,6 +71,15 @@
 			);
 			target = 089712382EA1A946003AE524 /* RickandMortyWidgetExtension */;
 		};
+		089712B92EA33DE3003AE524 /* Exceptions for "RickandMortyWidget" folder in "RickandMorty" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Intents/SwitchCharacterIntent.swift,
+				LiveActivity/CharacterActivityAttributes.swift,
+				LiveActivity/CharacterLiveActivity.swift,
+			);
+			target = 081E095E2E806DC50038FD32 /* RickandMorty */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -92,6 +101,7 @@
 		0897123F2EA1A946003AE524 /* RickandMortyWidget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				089712B92EA33DE3003AE524 /* Exceptions for "RickandMortyWidget" folder in "RickandMorty" target */,
 				0897124D2EA1A948003AE524 /* Exceptions for "RickandMortyWidget" folder in "RickandMortyWidgetExtension" target */,
 			);
 			path = RickandMortyWidget;
@@ -529,6 +539,7 @@
 				DEVELOPMENT_TEAM = DDYV9BM2N2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -563,6 +574,7 @@
 				DEVELOPMENT_TEAM = DDYV9BM2N2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

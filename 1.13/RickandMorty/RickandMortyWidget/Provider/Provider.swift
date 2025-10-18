@@ -7,7 +7,7 @@
 
 import WidgetKit
 import Foundation
-
+import SwiftData
 
 struct Provider: TimelineProvider {
     typealias Entry = RMCharacterEntry
@@ -32,28 +32,28 @@ struct Provider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping @Sendable (Timeline<RMCharacterEntry>) -> Void) {
         Task {
             let currentDate = Date()
+            let calendar = Calendar.current
             var entries: [RMCharacterEntry] = []
+            let charID = await fetchFavoriteOrRandomCharacter()
+            var entry = await fetchCharacter(id: charID)
+            print(charID)
             
-            var entry = await fetchCharacter(id: 2)
-            entries.append(entry)
+            let currentHourStart = calendar.dateComponents([.year, .month, .day, .hour], from: currentDate)
+            let startOfCurrentHour = calendar.date(from: currentHourStart)!
+            //            let nextFullHour = Calendar.current.nextDate(
+            //                        after: currentDate,
+            //                        matching: DateComponents(minute: 0, second: 0),
+            //                        matchingPolicy: .nextTime)!
+            let minutesUntilNextHour = 60 - calendar.component(.minute, from: currentDate)
             
-//            for hourOffset in 0..<5 {
-//                let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset * 15, to: currentDate)!
-//                let entry = RMCharacterEntry(date: .now, name: "Rick", image: "")
-//                entries.append(entry)
-//                print("Entry added")
-//            }
-            
-            for minuteOffset in 0..<60 {
-                    let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
+            for minuteOffset in 0..<minutesUntilNextHour {
+                let entryDate = calendar.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
                 entry.date = entryDate
-                    entries.append(entry)
-                }
+                entries.append(entry)
+                print(entry.date, entry.name)
+            }
             
-            let nextUpdate = Calendar.current.date(byAdding: .hour, value: 1, to: currentDate)!
-            print("Next update will be at \(currentDate.formatted(date: .omitted, time: .standard))")
-            print("Timeline created")
-            
+            let nextUpdate = calendar.date(byAdding: .hour, value: 1, to: startOfCurrentHour)!
             let timeline = Timeline(entries: entries, policy: .after(nextUpdate))
             completion(timeline)
         }
@@ -69,6 +69,24 @@ struct Provider: TimelineProvider {
         } catch {
             print(error.localizedDescription)
             return RMCharacterEntry(date: .now, name: "Unknown", image: "Unknown")
+        }
+    }
+    
+    // MARK: - Helper: read SwiftData
+    func fetchFavoriteOrRandomCharacter() async -> Int {
+        do {
+            let container = try ModelContainer(for: FavoriteCharacter.self)
+            let context = ModelContext(container)
+            let descriptor = FetchDescriptor<FavoriteCharacter>()
+            let favorites = try context.fetch(descriptor)
+            if let favorite = favorites.randomElement() {
+                return favorite.id
+            } else {
+                return 1
+            }
+        } catch {
+            print("⚠️ Failed to read SwiftData: \(error)")
+            return 1
         }
     }
 }

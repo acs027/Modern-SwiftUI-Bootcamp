@@ -12,5 +12,6 @@ import SwiftUI
 struct RickandMortyWidgetBundle: WidgetBundle {
     var body: some Widget {
         RickandMortyWidget()
+        CharacterLiveActivity()
     }
 }
