@@ -75,10 +75,16 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Intents/SwitchCharacterIntent.swift,
-				LiveActivity/CharacterActivityAttributes.swift,
 				LiveActivity/CharacterLiveActivity.swift,
 			);
 			target = 081E095E2E806DC50038FD32 /* RickandMorty */;
+		};
+		089712C22EA47ACD003AE524 /* Exceptions for "Shared" folder in "RickandMortyWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CharacterActivityAttributes.swift,
+			);
+			target = 089712382EA1A946003AE524 /* RickandMortyWidgetExtension */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -105,6 +111,14 @@
 				0897124D2EA1A948003AE524 /* Exceptions for "RickandMortyWidget" folder in "RickandMortyWidgetExtension" target */,
 			);
 			path = RickandMortyWidget;
+			sourceTree = "<group>";
+		};
+		089712C12EA47AC4003AE524 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				089712C22EA47ACD003AE524 /* Exceptions for "Shared" folder in "RickandMortyWidgetExtension" target */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -147,6 +161,7 @@
 		081E09562E806DC40038FD32 = {
 			isa = PBXGroup;
 			children = (
+				089712C12EA47AC4003AE524 /* Shared */,
 				089712582EA1E7EA003AE524 /* RickandMortyWidgetExtension.entitlements */,
 				081E09C82E8834200038FD32 /* README.md */,
 				081E09612E806DC50038FD32 /* RickandMorty */,
@@ -197,6 +212,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				081E09612E806DC50038FD32 /* RickandMorty */,
+				089712C12EA47AC4003AE524 /* Shared */,
 			);
 			name = RickandMorty;
 			packageProductDependencies = (
@@ -697,6 +713,7 @@
 				INFOPLIST_FILE = RickandMortyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = RickandMortyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -728,6 +745,7 @@
 				INFOPLIST_FILE = RickandMortyWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = RickandMortyWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

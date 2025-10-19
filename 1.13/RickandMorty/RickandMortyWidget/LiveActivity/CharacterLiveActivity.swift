@@ -90,14 +90,19 @@ struct CharacterLiveActivity: Widget {
     
     @ViewBuilder
     private func imageView(entry: CharacterActivityAttributes.ContentState) -> some View {
-        if let data = entry.imageData,
-        let image = UIImage(data: data) {
-            Image(uiImage: image)
-                .resizable()
-                .scaledToFit()
-                .opacity(0.8)
-        } else {
-            Color.clear
+//        if let data = entry.imageData,
+//        let image = UIImage(data: data) {
+//            Image(uiImage: image)
+//                .resizable()
+//                .scaledToFit()
+//                .opacity(0.8)
+//        } else {
+//            Color.clear
+//        }
+        AsyncImage(url: URL(string: entry.image)) { image in
+            image.resizable().scaledToFill()
+        } placeholder: {
+            LinearGradient(colors: [.blue, .cyan], startPoint: .topLeading, endPoint: .bottomTrailing)
         }
     }
 }

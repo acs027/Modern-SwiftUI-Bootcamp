@@ -13,7 +13,6 @@ struct CharacterListView: View {
     @State private var isFavoriteShowing: Bool = false
     @Environment(\.modelContext) var context
     
-    
     var body: some View {
         NavigationStack {
             ScrollView {

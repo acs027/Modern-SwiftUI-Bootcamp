@@ -13,7 +13,6 @@ import SwiftData
 @Observable
 final class CharacterListViewModel {
     private let apiService: APIServiceProtocol
-    //    private let dataService = PersistenceController.shared
     
     private(set) var charactersSet: Set<RMCharacter> = []
     var isAlertShowing: Bool = false
@@ -140,6 +139,27 @@ final class CharacterListViewModel {
     
     func isFavoriteCharacter(id: Int) -> Bool {
         favorites.contains(where: {$0 == id})
+    }
+    
+    
+    func getRandomFavoriteCharacterAsAttributesContentState() -> CharacterActivityAttributes.ContentState? {
+        if let random = favorites.randomElement(),
+        let character = charactersSet.first(where: {$0.id == random}) {
+//            let imageData = await fetchImageData(url: URL(string: character.image))
+            return CharacterActivityAttributes.ContentState(date: .now, name: character.name, image: character.image, imageData: nil)
+        }
+        return nil
+    }
+    
+    private func fetchImageData(url: URL?) async -> Data? {
+        guard let url else { return nil }
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            print("image data ready")
+            return data
+        } catch {
+            return nil
+        }
     }
 }
 

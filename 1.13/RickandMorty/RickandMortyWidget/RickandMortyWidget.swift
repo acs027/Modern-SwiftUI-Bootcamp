@@ -8,6 +8,7 @@
 import WidgetKit
 import SwiftUI
 import AppIntents
+import ActivityKit
 
 struct RickandMortyWidgetEntryView : View {
     var entry: Provider.Entry
@@ -26,7 +27,7 @@ struct RickandMortyWidgetEntryView : View {
                     .font(.largeTitle)
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
-                Text(entry.name)
+//                Text(entry.name)
             }
             .padding()
             .background {
@@ -55,7 +56,7 @@ struct RickandMortyWidgetEntryView : View {
     @ViewBuilder
     var imageView: some View {
         if let data = entry.imageData,
-        let image = UIImage(data: data) {
+           let image = UIImage(data: data) {
             Image(uiImage: image)
                 .resizable()
                 .scaledToFit()
@@ -85,7 +86,7 @@ struct RickandMortyWidget: Widget {
     @ViewBuilder
     func imageView(entry: RMCharacterEntry) -> some View {
         if let data = entry.imageData,
-        let image = UIImage(data: data) {
+           let image = UIImage(data: data) {
             Image(uiImage: image)
                 .resizable()
                 .scaledToFill()
